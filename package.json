@@ -1,5 +1,5 @@
 {
-  "name": "bilawalhussain-simple-calculator-project",
+  "name": "simple-bil-calculator-project",
   "version": "1.0.0",
   "description": "Simple Calculator With Typescript, Node.js and Inquirer",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "author": "Bilawal Hussain",
   "license": "MIT",
   "dependencies": {
+    "color": "^4.2.3",
     "inquirer": "^9.2.16"
   },
   "devDependencies": {
