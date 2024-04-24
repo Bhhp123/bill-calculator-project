@@ -1,27 +1,65 @@
 #! /usr/bin/env node
 
-import inquirer from "inquirer";
+import inquirer from 'inquirer';
 
-const answer = await inquirer.prompt([
-  { message: "Enter first number", type: "number", name: "firstNumber" },
-  { message: "Enter second number", type: "number", name: "secondNumber" },
-  {
-    message: "Select one of the operators to perform operation",
-    type: "list",
-    name: "operator",
-    choices: ["Addition","Subtraction","Multiplication","Division"],
-  },
-]);
+async function calculator() {
+  console.log('\x1b[34m======================================================\x1b[0m');
+  console.log('\t\x1b[34m\x1b[1m Bilawal Hussain\'s Calculator Project \x1b[0m');
+  console.log('\x1b[36m======================================================\x1b[0m');
 
-// conditional statement
-if(answer.operator === "Addition") {
-    console.log( answer.firstNumber + answer.secondNumber);
-} else if (answer.operator === "Subtraction") {
-    console.log( answer.firstNumber - answer.secondNumber);
-}else if(answer.operator === "Multiplication") {
-    console.log( answer.firstNumber * answer.secondNumber);
-}else if(answer.operator === "Division") {
-    console.log( answer.firstNumber / answer.secondNumber);
-} else {
-  console.log('Please Select a Valid Operator')
+  const operations = ['Addition', 'Subtraction', 'Multiplication', 'Division', 'Exit'];
+  let num1 = 0;
+  let num2 = 0;
+
+  while (true) {
+    const numbers = await inquirer.prompt([
+      {
+        type: 'number',
+        name: 'num1',
+        message: '\x1b[36mEnter the first number:\x1b[0m',
+        default: num1,
+      },
+      {
+        type: 'number',
+        name: 'num2',
+        message: '\x1b[33mEnter the second number:\x1b[0m',
+        default: num2,
+      },
+      {
+        type: 'list',
+        name: 'operation',
+        message: '\x1b[32mSelect the operation:\x1b[0m',
+        choices: operations,
+      },
+    ]);
+
+    if (numbers.num1 === 0 || numbers.num2 === 0) {
+      console.log('\x1b[35mPlease enter valid numbers!\x1b[0m');
+      continue;
+    }
+
+    if (numbers.operation === 'Exit') {
+      console.log('\t\x1b[31mExiting...\x1b[0m');
+      break;
+    }
+
+    let result;
+
+    if (numbers.operation === 'Addition') {
+      result = numbers.num1 + numbers.num2;
+    } else if (numbers.operation === 'Subtraction') {
+      result = numbers.num1 - numbers.num2;
+    } else if (numbers.operation === 'Multiplication') {
+      result = numbers.num1 * numbers.num2;
+    } else if (numbers.operation === 'Division') {
+      result = numbers.num1 / numbers.num2;
+    }
+
+    console.log(`\x1b[34mResult: ${numbers.num1} ${numbers.operation} ${numbers.num2} = ${result}\x1b[0m`);
+
+    num1 = numbers.num1;
+    num2 = numbers.num2;
+  }
 }
+
+calculator();
