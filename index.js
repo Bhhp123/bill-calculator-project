@@ -2,7 +2,7 @@
 import inquirer from 'inquirer';
 async function calculator() {
     console.log('\x1b[34m======================================================\x1b[0m');
-    console.log('\t\x1b[34m\x1b[1m Bilawal Hussain\'s Calculator Project \x1b[0m');
+    console.log('\t\x1b[34m\x1b[4m Bilawal Hussain\'s CALCULATOR PROJECT1 \x1b[0m');
     console.log('\x1b[36m======================================================\x1b[0m');
     const operations = ['Addition', 'Subtraction', 'Multiplication', 'Division', 'Exit'];
     let num1 = 0;
